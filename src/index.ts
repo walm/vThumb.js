@@ -141,6 +141,13 @@ export const getVideoCover = (urlOfFIle: string, seekTo = 0.0): Promise<string> 
             const videoPlayer = document.createElement('video');
             // videoPlayer.setAttribute('src', URL.createObjectURL(urlOfFIle));
             videoPlayer.setAttribute('src', urlOfFIle);
+
+            // workaround for iOS 17.4.1 issue
+            const videoSource = document.createElement('source');
+            videoSource.type = 'video/mp4' ;
+            videoSource.src = urlOfFIle; // URL.createObjectURL(blob);
+            videoPlayer.appendChild(videoSource) ;
+
             videoPlayer.crossOrigin = "Anonymous";
             videoPlayer.load();
             videoPlayer.addEventListener('error', (ex) => {

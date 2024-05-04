@@ -24,10 +24,14 @@ const VideoThumbnailsFromFile = () => {
       {inputUrl && (
         <div className="video text-center">
           <video
-            src={inputUrl}
             poster={selectedThumbnail || ""}
             controls
-          ></video>
+          >
+            <source
+              type="video/mp4" 
+              src={inputUrl}
+              />
+          </video>
         </div>
       )}
       <div className="formgroup">
